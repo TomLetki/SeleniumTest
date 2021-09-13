@@ -13,25 +13,25 @@ public class seleniumTest {
 
     @Test
     public void openGooglePage() {
-        WebDriver driver = getDriver("chrome");
+        WebDriver driver = getDriver("firefox");
         driver.manage().window().maximize();
         driver.get("https://www.google.com");
-        driver.switchTo().frame(0);
+        //driver.switchTo().frame(0); - przycisk nie jest już w iframe
         //przepięcie  do okna z cookie
-        WebElement agreeButton = driver.findElement(By.xpath("//span[contains(text(),'Zgadzam')]"));
+        WebElement agreeButton = driver.findElement(By.xpath("//div[contains(text(),'Zgadzam')]"));
         //znalezienie przycisku
         agreeButton.click();
         //kliknięcie przycisku
-        driver.switchTo().defaultContent(); // powrot do okna pierwotnego
+       // driver.switchTo().defaultContent(); // powrot do okna pierwotnego
         //znajdź pole wyszukiwania
         WebElement searchField = driver.findElement(By.name("q"));
         searchField.sendKeys("Selenium");
         //wyszukiwana wartość
         searchField.sendKeys(Keys.ENTER);
         //zasymuluj naciśnięcie Enter
-        WebElement result = driver.findElement(By.xpath("//a[contains(@chref,'selenium.dev')]//span"));
-        //Znaleźć rezultat
-        Assert.assertTrue(result.isDisplayed());
+        WebElement result = driver.findElement(By.xpath("//a[contains(@href,'selenium.dev')]//h3"));
+               //Znaleźć rezultat
+       Assert.assertTrue(result.isDisplayed());
 
     }
 
@@ -43,6 +43,7 @@ public class seleniumTest {
             case "firefox":
                 return new FirefoxDriver();
             case "edge":
+                System.setProperty("webdriver.edge.driver","D:\\Szkolenie_tester\\Edgedriver\\msedgedriver.exe");
                 return new EdgeDriver();
             default:
                 throw new InvalidArgumentException("nieznana przeglądarka");
