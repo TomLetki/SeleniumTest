@@ -1,17 +1,15 @@
-import org.openqa.selenium.By;
-import org.openqa.selenium.InvalidArgumentException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.Test;
 
+import java.sql.Driver;
 import java.util.List;
 
 public class XpathTest {
 @Test
-public void findElements(){
+public void findElements() throws InterruptedException {
     WebDriver driver = getDriver("chrome");
     driver.manage().window().maximize();
     driver.get("https://testeroprogramowania.github.io/selenium/basics.html");
@@ -21,6 +19,8 @@ public void findElements(){
 
     By firstName = By.xpath("//input[@name='fname']");
     WebElement firstNameInput = driver.findElement(firstName);
+    //firstNameInput.sendKeys("EGON ");
+    //firstNameInput.sendKeys(Keys.ENTER);
 
     By paraHidden = By.xpath("//p[@class='topSecret']");
     WebElement findClassName = driver.findElement(paraHidden);
@@ -39,11 +39,40 @@ public void findElements(){
 
     By fullPath = By.xpath("/html/body/div/ul");
     driver.findElement(fullPath);
+
     By shortPath = By.xpath("//ul");
+    driver.findElement(shortPath);
+
+    By allXpath = By.xpath("//*");
+    driver.findElement(allXpath);
+
+    By secondElemnt = By.xpath("(//input)[2]");
+    driver.findElement(secondElemnt);
+
+    By lastElement = By.xpath("(//input)[last()]");
+    driver.findElement(lastElement);
+
+    By elementWithAttribute = By.xpath("//*[@name]");
+    driver.findElement(elementWithAttribute);
+
+    By attrEq = By.xpath("//button[@id='clickOnMe']");
+    By attrNotEq = By.xpath("//button[@id!='clickOnMe']");
+    By attrContains = By.xpath("//*[contains(@name, 'ame')]");
+    By startsWith = By.xpath("//*[starts-with(@name, 'user')]");
+    By endsWith = By.xpath("//*[substring(@name, string-length(@name)-string-length('name')+1)='name']");
+
+    driver.findElement(attrEq);
+    driver.findElement(attrNotEq);
+    driver.findElement(attrContains);
+    driver.findElement(startsWith);
+    driver.findElement(endsWith);
 
 
-    WebElement button = driver.findElement(By.xpath("//input[3]"));
-     button.click();
+
+
+
+    Thread.sleep(2000);
+    driver.close();
 
 
 
