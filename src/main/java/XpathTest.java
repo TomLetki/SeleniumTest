@@ -67,6 +67,24 @@ public void findElements() throws InterruptedException {
     driver.findElement(startsWith);
     driver.findElement(endsWith);
 
+    By child = By.xpath("//div/child::ul");
+    By desc = By.xpath("//div/descendant::ul");
+    By parrent = By.xpath("//div/../..");
+    By asc = By.xpath("//div/ancestor::*");
+    By foll = By.xpath("//img/following::*");
+    By follsibl = By.xpath("//img/following-sibling::*");
+    By prec = By.xpath("//img/preceding::*");
+    By precSib = By.xpath("//img/preceding-sibling::*");
+
+    driver.findElement(child);
+    driver.findElement(desc);
+    driver.findElement(parrent);
+    driver.findElement(asc);
+    driver.findElement(foll);
+    driver.findElement(follsibl);
+    driver.findElement(prec);
+    driver.findElement(precSib);
+
 
 
 
