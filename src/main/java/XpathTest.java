@@ -32,28 +32,28 @@ public void findElements() throws InterruptedException {
     System.out.println(inputs.size());
 
     By linkText = By.xpath("//a[text()='Visit W3Schools.com!']");
-    WebElement schoolLink = driver.findElement(linkText);
+        WebElement schoolLink = driver.findElement(linkText);
 
     By partialLink = By.xpath("//a[contains(text(),'W3S')]");
-    WebElement partW3 = driver.findElement(partialLink);
+        WebElement partW3 = driver.findElement(partialLink);
 
     By fullPath = By.xpath("/html/body/div/ul");
-    driver.findElement(fullPath);
+        driver.findElement(fullPath);
 
     By shortPath = By.xpath("//ul");
-    driver.findElement(shortPath);
+        driver.findElement(shortPath);
 
     By allXpath = By.xpath("//*");
-    driver.findElement(allXpath);
+        driver.findElement(allXpath);
 
     By secondElemnt = By.xpath("(//input)[2]");
-    driver.findElement(secondElemnt);
+        driver.findElement(secondElemnt);
 
     By lastElement = By.xpath("(//input)[last()]");
-    driver.findElement(lastElement);
+        driver.findElement(lastElement);
 
     By elementWithAttribute = By.xpath("//*[@name]");
-    driver.findElement(elementWithAttribute);
+        driver.findElement(elementWithAttribute);
 
     By attrEq = By.xpath("//button[@id='clickOnMe']");
     By attrNotEq = By.xpath("//button[@id!='clickOnMe']");
@@ -61,11 +61,11 @@ public void findElements() throws InterruptedException {
     By startsWith = By.xpath("//*[starts-with(@name, 'user')]");
     By endsWith = By.xpath("//*[substring(@name, string-length(@name)-string-length('name')+1)='name']");
 
-    driver.findElement(attrEq);
-    driver.findElement(attrNotEq);
-    driver.findElement(attrContains);
-    driver.findElement(startsWith);
-    driver.findElement(endsWith);
+        driver.findElement(attrEq);
+        driver.findElement(attrNotEq);
+        driver.findElement(attrContains);
+        driver.findElement(startsWith);
+        driver.findElement(endsWith);
 
     By child = By.xpath("//div/child::ul");
     By desc = By.xpath("//div/descendant::ul");
@@ -76,15 +76,22 @@ public void findElements() throws InterruptedException {
     By prec = By.xpath("//img/preceding::*");
     By precSib = By.xpath("//img/preceding-sibling::*");
 
-    driver.findElement(child);
-    driver.findElement(desc);
-    driver.findElement(parrent);
-    driver.findElement(asc);
-    driver.findElement(foll);
-    driver.findElement(follsibl);
-    driver.findElement(prec);
-    driver.findElement(precSib);
+        driver.findElement(child);
+        driver.findElement(desc);
+        driver.findElement(parrent);
+        driver.findElement(asc);
+        driver.findElement(foll);
+        driver.findElement(follsibl);
+        driver.findElement(prec);
+        driver.findElement(precSib);
 
+    By divsandlinks = By.xpath("//div/a | //a");
+    By andOperator = By.xpath("//input[@name='fname' and @id='fname']");
+    By orOpertor = By.xpath("//input[@name='fname' or @id='fname']");
+
+        driver.findElement(divsandlinks);
+        driver.findElement(andOperator);
+        driver.findElement(orOpertor);
 
 
 

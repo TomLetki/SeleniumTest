@@ -15,9 +15,9 @@ public class openLu112 {
         driver.manage().window().maximize();
         driver.get("https://www.lublin112.pl/");
         Thread.sleep(2000);
-        driver.switchTo().frame(0);
+        //driver.switchTo().frame(0);
         
-        WebElement agreButton = driver.findElement(By.xpath("////span[contains(text(),'Zaakceptuj')]"));
+        WebElement agreButton = driver.findElement(By.xpath("/html/body/div/div/div/div/div/div/div[3]/div[2]/button/span[1]"));
         agreButton.click();
 
     }
