@@ -4,6 +4,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.Test;
 
 public class BasicActionsTest {
@@ -14,6 +15,7 @@ public class BasicActionsTest {
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.get("https://testeroprogramowania.github.io/selenium/");
+
 
         WebElement basicPageLink = driver.findElement(By.linkText(("Podstawowa strona testowa")));
         basicPageLink.click();
@@ -27,6 +29,12 @@ public class BasicActionsTest {
 
         driver.findElement(By.cssSelector("[type='checkbox']")).click();
         driver.findElement(By.cssSelector("[value='other']")).click();
+
+        WebElement selectCar = driver.findElement(By.cssSelector("select"));
+        Select cars = new Select(selectCar);
+        //cars.selectByIndex(1);
+        //cars.selectByVisibleText("Saab"); //duża litera
+        cars.selectByValue("mercedes"); //mała litera
 
 
 
