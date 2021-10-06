@@ -1,5 +1,6 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -20,6 +21,12 @@ public class BasicActionsTest {
         WebElement userNameInput = driver.findElement(By.name("username"));
         userNameInput.clear();
         userNameInput.sendKeys("Admin");
+        userNameInput.sendKeys(Keys.TAB);
+        userNameInput.sendKeys(Keys.TAB);
+        driver.findElement(By.name("password")).sendKeys(Keys.TAB);
+
+        driver.findElement(By.cssSelector("[type='checkbox']")).click();
+        driver.findElement(By.cssSelector("[value='other']")).click();
 
 
 
