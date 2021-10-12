@@ -7,6 +7,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.Test;
 
+import java.util.List;
+
 public class BasicActionsTest {
 
     @Test
@@ -18,6 +20,7 @@ public class BasicActionsTest {
 
 
         WebElement basicPageLink = driver.findElement(By.linkText(("Podstawowa strona testowa")));
+        System.out.println(basicPageLink.getText());
         basicPageLink.click();
         driver.findElement(By.id("fname")).sendKeys("Passierte Tomaten");
         WebElement userNameInput = driver.findElement(By.name("username"));
@@ -35,6 +38,14 @@ public class BasicActionsTest {
         //cars.selectByIndex(1);
         //cars.selectByVisibleText("Saab"); //duża litera
         cars.selectByValue("mercedes"); //mała litera
+        List<WebElement> options = cars.getOptions();
+        for (WebElement option : options){
+            System.out.println(option.getText());
+        }
+
+        SelectCheck selecktCheck = new SelectCheck();
+        System.out.println(selecktCheck.findInSelect("Audi",selectCar));
+        System.out.println(selecktCheck.findInSelect("Skoda", selectCar));
 
 
 
