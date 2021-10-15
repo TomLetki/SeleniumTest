@@ -1,8 +1,5 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.Test;
@@ -25,10 +22,15 @@ public class BasicActionsTest {
         driver.findElement(By.id("fname")).sendKeys("Passierte Tomaten");
         WebElement userNameInput = driver.findElement(By.name("username"));
         userNameInput.clear();
-        userNameInput.sendKeys("Admin");
-        userNameInput.sendKeys(Keys.TAB);
-        userNameInput.sendKeys(Keys.TAB);
-        driver.findElement(By.name("password")).sendKeys(Keys.TAB);
+        userNameInput.sendKeys("Administrator");
+        System.out.println(userNameInput.getAttribute("value")); // pobranie wartości z pola
+        userNameInput.sendKeys(Keys.ENTER);
+        Alert firstAlert = driver.switchTo().alert();
+        firstAlert.accept();
+        driver.switchTo().alert().accept();
+
+        //userNameInput.sendKeys(Keys.TAB);
+       // driver.findElement(By.name("password")).sendKeys(Keys.TAB);
 
         driver.findElement(By.cssSelector("[type='checkbox']")).click();
         driver.findElement(By.cssSelector("[value='other']")).click();
@@ -47,7 +49,10 @@ public class BasicActionsTest {
         System.out.println(selecktCheck.findInSelect("Audi",selectCar));
         System.out.println(selecktCheck.findInSelect("Skoda", selectCar));
 
-
+    WebElement paragraph = driver.findElement(By.cssSelector(".topSecret"));
+        System.out.println("By text :" +paragraph.getText());
+        System.out.println("By atribute value :" +paragraph.getAttribute("value"));
+        System.out.println("By atribute textContent :" +paragraph.getAttribute("textContent")); //ten działa z uktytym
 
 
     }
