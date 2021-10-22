@@ -5,6 +5,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.Test;
 
 import java.util.List;
+import java.util.Set;
 
 public class BasicsGeneralTest {
 
@@ -17,6 +18,9 @@ public class BasicsGeneralTest {
         Actions actions = new Actions(driver);
         WebElement heading = driver.findElement(By.tagName("h1"));
         actions.moveToElement(heading).perform();
+
+        System.out.println(driver.getCurrentUrl());
+        System.out.println(driver.getTitle());
 /*
         WebElement button1 = driver.findElement(By.id("clickOnMe"));
             button1.click();
@@ -24,10 +28,11 @@ public class BasicsGeneralTest {
             driver.switchTo().alert().accept();
 
         WebElement firstInput = driver.findElement(By.id("fname"));
-            firstInput.sendKeys("Nowa Wartość input");
-            Thread.sleep(1000);
+            firstInput.sendKeys("Nowa wartość input");
+            Thread.sleep(500);
             firstInput.clear();
 
+        //Klikanie w linki i powrót do strony
         WebElement firstLink = driver.findElement(By.linkText("Visit W3Schools.com!"));
             System.out.println(firstLink.getText());
             firstLink.click();
@@ -37,6 +42,7 @@ public class BasicsGeneralTest {
             secondLink.click();
             driver.navigate().back();
 
+        //WYświetlanie zawartości tabeli
         WebElement tableTr = driver.findElement(By.xpath("/html/body/table/tbody/tr[1]"));
             System.out.println(tableTr.getText());
         WebElement tableTd = driver.findElement(By.xpath("/html/body/table/tbody/tr[2]"));
@@ -78,12 +84,43 @@ public class BasicsGeneralTest {
             System.out.println(inputPass.getAttribute("value"));
             //inputPass.sendKeys(Keys.ENTER);
 
+        //sprawdzenie działania przycisku "submit"
         driver.findElement(By.cssSelector("[type=submit]")).click();
         //pierwszy alert
             Alert alert = driver.switchTo().alert();
             alert.accept();
         //drugi alert
             driver.switchTo().alert().accept();
+
+        //odnalezienie obrazka na stronie
+        driver.findElement(By.xpath("//*[@id='smileImage']"));
+
+        //Kliknięcie w przycisk ClickMe otwierający nowe okno
+        String currentWindow = driver.getWindowHandle();
+        driver.findElement(By.id("newPage")).click();
+        Set<String> windowNames = driver.getWindowHandles();
+        for(String window : windowNames){
+            if(!window.equals(currentWindow)){
+                driver.switchTo().window(window);
+            }
+        }
+        Thread.sleep(500);
+        driver.close(); //zamyka nowe okno
+        driver.switchTo().window(currentWindow);
+
+        //elementy ukryte
+        WebElement paragraph = driver.findElement(By.className("topSecret")); // można też przez selector ".topSecret"
+        System.out.println(paragraph.getAttribute("textContent"));
+
+        By firstChild = By.cssSelector("li:first-child");
+        By lastChild = By.cssSelector("li:last-child");
+        By nthChild = By.cssSelector("li:nth-child(2)");
+
+
+        driver.findElement(firstChild);
+        driver.findElement(lastChild);
+        driver.findElement(nthChild);
+
 
         }
     }
