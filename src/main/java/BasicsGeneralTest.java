@@ -1,5 +1,7 @@
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.Test;
@@ -12,16 +14,18 @@ public class BasicsGeneralTest {
 
     @Test
     public void basicsTest() throws InterruptedException {
-        WebDriver driver = new ChromeDriver();
+        WebDriver driver = getDriver("chrome");
         driver.manage().window().maximize();
         driver.get("https://testeroprogramowania.github.io/selenium/basics.html");
+
+        //Wyświetlenie adresu i tytułu strony
+        System.out.println(driver.getCurrentUrl());
+        System.out.println(driver.getTitle());
+
         Actions actions = new Actions(driver);
         WebElement heading = driver.findElement(By.tagName("h1"));
         actions.moveToElement(heading).perform();
 
-        System.out.println(driver.getCurrentUrl());
-        System.out.println(driver.getTitle());
-/*
         WebElement button1 = driver.findElement(By.id("clickOnMe"));
             button1.click();
             Thread.sleep(1000);
@@ -32,7 +36,7 @@ public class BasicsGeneralTest {
             Thread.sleep(500);
             firstInput.clear();
 
-        //Klikanie w linki i powrót do strony
+        //Klikanie w linki i powrót do strony basics.html
         WebElement firstLink = driver.findElement(By.linkText("Visit W3Schools.com!"));
             System.out.println(firstLink.getText());
             firstLink.click();
@@ -52,7 +56,7 @@ public class BasicsGeneralTest {
         WebElement carSelectList = driver.findElement(By.cssSelector("select"));
         Select cars = new Select(carSelectList);
             cars.selectByValue("mercedes");
-                Thread.sleep(500); // pozwala zobaczyć wybór z listy select
+                Thread.sleep(500); // sleep jest tylko dla lepszego efektu wizualnego
             cars.selectByValue("audi");
                 Thread.sleep(500);
             cars.selectByValue("saab");
@@ -64,7 +68,8 @@ public class BasicsGeneralTest {
         for (WebElement option : options) {
             System.out.println(option.getText());
         }
-*/
+
+        //Zaznaczenie i odznaczenie checkboxa
         WebElement checkBox = driver.findElement(By.cssSelector("[type=checkbox]"));
         checkBox.click();
         Thread.sleep(500);
@@ -74,6 +79,7 @@ public class BasicsGeneralTest {
         driver.findElement(By.cssSelector("[value=female]")).click();
         driver.findElement(By.cssSelector("[value=other]")).click();
 
+        //uzupełnienie inputów: Nazwa użytkowanika i hasło
         WebElement inputUser = driver.findElement(By.name("username"));
             inputUser.clear();
             inputUser.sendKeys("Testowy");
@@ -86,10 +92,10 @@ public class BasicsGeneralTest {
 
         //sprawdzenie działania przycisku "submit"
         driver.findElement(By.cssSelector("[type=submit]")).click();
-        //pierwszy alert
+            //pierwszy alert
             Alert alert = driver.switchTo().alert();
             alert.accept();
-        //drugi alert
+            //drugi alert
             driver.switchTo().alert().accept();
 
         //odnalezienie obrazka na stronie
@@ -116,13 +122,23 @@ public class BasicsGeneralTest {
         By lastChild = By.cssSelector("li:last-child");
         By nthChild = By.cssSelector("li:nth-child(2)");
 
-
         driver.findElement(firstChild);
         driver.findElement(lastChild);
         driver.findElement(nthChild);
 
 
         }
+
+
+
+    public WebDriver getDriver(String browser){
+        return switch (browser) {
+            case "chrome" -> new ChromeDriver();
+            case "firefox" -> new FirefoxDriver();
+            case "edge" -> new EdgeDriver();
+            default -> throw new InvalidArgumentException("Nieznana przegladarka lub błąd nazwy");
+        };
+    }
     }
 
 
