@@ -18,7 +18,7 @@ public class ImageTest {
 
         WebElement image = driver.findElement(By.tagName("img"));
         String height = image.getAttribute("naturalHeight");
-        Assert.assertEquals("0", height);
+        Assert.assertEquals(height, "0" );
 
     }
 }
