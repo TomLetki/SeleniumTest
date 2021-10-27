@@ -98,8 +98,11 @@ public class BasicsGeneralTest {
             //drugi alert
             driver.switchTo().alert().accept();
 
-        //odnalezienie obrazka na stronie
-        driver.findElement(By.xpath("//*[@id='smileImage']"));
+        //odnalezienie elementu img na stronie
+        //driver.findElement(By.xpath("//*[@id='smileImage']"));
+
+        //Sprawdzenie czy element img jest wyświetlony
+        System.out.println(driver.findElement(By.xpath("//*[@id='smileImage']")).isDisplayed());
 
         //Kliknięcie w przycisk ClickMe otwierający nowe okno
         String currentWindow = driver.getWindowHandle();
