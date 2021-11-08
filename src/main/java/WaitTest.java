@@ -45,7 +45,7 @@ public class WaitTest {
        // wait.until(ExpectedConditions.elementSelectionStateToBe(By.cssSelector("checkbox")));
 
        // driver.findElement(By.cssSelector("p"));
-        waitForElement(By.cssSelector("pa"));
+        waitForElement(By.cssSelector("p"));
     }
 
     public void waitForElement(By locator){
