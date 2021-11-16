@@ -1,13 +1,13 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.io.File;
+import java.io.IOException;
 import java.time.Duration;
 import java.util.List;
 
@@ -29,7 +29,7 @@ public class FirstTest extends BaseTest {
         driver.quit();
     }
     @Test
-    public void secondTest(){
+    public void secondTest() throws IOException {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         driver.get("https://testeroprogramowania.github.io/selenium/wait2.html");
@@ -40,6 +40,15 @@ public class FirstTest extends BaseTest {
 
         String paraText = driver.findElement(By.cssSelector("p")).getText();
         Assert.assertEquals(paraText,"Dopiero się pojawiłem!");
+        if(paraText.equals("Dopiero się pojawiłem!")) {
+            int randomNumber = (int) (Math.random() * 1000);
+            TakesScreenshot screenshot = (TakesScreenshot) driver;
+            File srcFile = screenshot.getScreenshotAs(OutputType.FILE);
+            String fileName = "screen" + randomNumber + ".png";
+            FileUtils.copyFile(srcFile, new File("src/test/resources/" + fileName));
+        }
+
+
         driver.quit();
     }
 
