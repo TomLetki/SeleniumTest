@@ -24,8 +24,8 @@ public class FirstTest extends BaseTest {
 
         waitForElement(By.cssSelector("p"));
 
-        String paraText = driver.findElement(By.cssSelector("clickOnMe")).getText();
-        Assert.assertEquals(paraText,"Dopiero się pojawiłem");
+        String paraText = driver.findElement(By.cssSelector("p")).getText();
+        Assert.assertEquals(paraText,"Dopiero się pojawiłem!");
         driver.quit();
     }
     @Test
@@ -38,8 +38,8 @@ public class FirstTest extends BaseTest {
 
         waitForElement(By.cssSelector("p"));
 
-        String paraText = driver.findElement(By.cssSelector("clickOnMe")).getText();
-        Assert.assertEquals(paraText,"Dopiero się pojawiłem");
+        String paraText = driver.findElement(By.cssSelector("p")).getText();
+        Assert.assertEquals(paraText,"Dopiero się pojawiłem!");
         driver.quit();
     }
 
