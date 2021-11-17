@@ -1,3 +1,5 @@
+package pl.testeroprogramowania;
+
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
@@ -5,6 +7,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import pl.testeroprogramowania.BaseTest;
 
 import java.io.File;
 import java.io.IOException;
