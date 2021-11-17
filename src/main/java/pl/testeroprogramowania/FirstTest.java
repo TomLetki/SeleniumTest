@@ -6,6 +6,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.testng.Assert;
+import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 import pl.testeroprogramowania.BaseTest;
 
@@ -17,7 +18,7 @@ import java.util.List;
 public class FirstTest extends BaseTest {
     WebDriver driver;
 
-    @Test
+    @Test @Ignore
     public void firstTest(){
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
