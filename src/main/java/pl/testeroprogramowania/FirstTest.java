@@ -45,11 +45,17 @@ public class FirstTest extends BaseTest {
         driver = new ChromeDriver();
         driver.get("https://testeroprogramowania.github.io/selenium/wait2.html");
         driver.findElement(By.id("clickOnMe")).click();
-
-
         waitForElement(By.cssSelector("p"));
+        WebElement para = driver.findElement(By.cssSelector("p"));
+        SoftAssert softAssert = new SoftAssert();
+            softAssert.assertEquals(para.isDisplayed(), true);
+            softAssert.assertTrue(para.isDisplayed(), "Element is not displayed");
+            softAssert.assertEquals(para.getText(),"Dopiero", "Teksty są różne");
+            softAssert.assertTrue(para.getText().startsWith("Dopiero"));
+            softAssert.assertFalse(para.getText().startsWith("Pojawiłem"));
+            softAssert.assertEquals(para.getText(), "Dopiero si!", "druga asercja");
 
-        String paraText = driver.findElement(By.cssSelector("p")).getText();
+        /*String paraText = driver.findElement(By.cssSelector("p")).getText();
         Assert.assertEquals(paraText,"Dopiero się pojawiłem!");
         if(paraText.equals("Dopiero się pojawiłem!")) {
             int randomNumber = (int) (Math.random() * 1000);
@@ -57,10 +63,11 @@ public class FirstTest extends BaseTest {
             File srcFile = screenshot.getScreenshotAs(OutputType.FILE);
             String fileName = "screen" + randomNumber + ".png";
             FileUtils.copyFile(srcFile, new File("src/test/resources/" + fileName));
-        }
+        }*/
 
 
         driver.quit();
+        softAssert.assertAll();
     }
 
     public void waitForElement(By locator){
